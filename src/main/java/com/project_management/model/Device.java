@@ -34,5 +34,4 @@ public class Device {
     @Column(nullable=false)
     private OffsetDateTime lastSeenAt;
 
-
 }

@@ -30,16 +30,12 @@ public class Notification {
     @ManyToOne(fetch = FetchType.LAZY)
     private Organization organization;
 
-    // free text title and body/payload
+    // free text title and body
     @Column(nullable=false)
     private String title;
 
     @Column(length = 4000)
     private String body;
-
-    // JSON or structured payload (optional)
-    @Lob
-    private String payloadJson;
 
     // priority (URGENT etc.)
     @Enumerated(EnumType.STRING)

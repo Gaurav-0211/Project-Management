@@ -19,10 +19,12 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Autowired
     private OrganizationRepository organizationRepository;
 
+    @Autowired
+    private Response response;
+
     // Create a new Organization
     @Override
     public Response createOrganization(String name, String timezone) {
-        Response response = new Response();
         try {
             // Check if organization name already exists
             if (organizationRepository.findByName(name) != null) {
@@ -58,7 +60,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     // Get all Organizations
     @Override
     public Response getAllOrganizations() {
-        Response response = new Response();
         try {
             List<Organization> organizations = organizationRepository.findAll();
 
@@ -80,7 +81,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     // Get organization by ID
     @Override
     public Response getOrganizationById(Long id) {
-        Response response = new Response();
         try {
             Optional<Organization> orgOpt = organizationRepository.findById(id);
             if (orgOpt.isEmpty()) {
@@ -109,7 +109,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     // Get organization by name
     @Override
     public Response getOrganizationByName(String name) {
-        Response response = new Response();
         try {
             Organization org = organizationRepository.findByName(name);
             if (org == null) {
@@ -138,7 +137,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     // Update Organization
     @Override
     public Response updateOrganization(Long id, String newName, String timezone) {
-        Response response = new Response();
         try {
             Optional<Organization> orgOpt = organizationRepository.findById(id);
             if (orgOpt.isEmpty()) {
@@ -187,7 +185,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     // Delete Organization
     @Override
     public Response deleteOrganization(Long id) {
-        Response response = new Response();
         try {
             Optional<Organization> orgOpt = organizationRepository.findById(id);
             if (orgOpt.isEmpty()) {

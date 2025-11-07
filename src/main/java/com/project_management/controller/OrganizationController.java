@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/organizations")
-@CrossOrigin(origins = "*") // Allow frontend access; adjust for production
 public class OrganizationController {
 
     @Autowired

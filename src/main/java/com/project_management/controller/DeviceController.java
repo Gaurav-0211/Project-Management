@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/devices")
-@CrossOrigin(origins = "*")
 public class DeviceController {
 
     @Autowired
@@ -22,7 +21,7 @@ public class DeviceController {
             @RequestParam(required = false) String platform) {
 
         Response res = deviceService.registerDevice(userId, pushToken, platform);
-        return ResponseEntity.status(res.getStatusCode()).body(res);
+        return ResponseEntity.ok(res);
     }
 
     // Update lastSeenAt

@@ -37,7 +37,7 @@ public class DeviceServiceImpl implements DeviceService {
             if (existing != null) {
                 existing.setLastSeenAt(OffsetDateTime.now());
                 existing.setPlatform(platform);
-                deviceRepository.save(existing);
+                this.deviceRepository.save(existing);
 
                 response.setStatus("SUCCESS");
                 response.setStatusCode(200);

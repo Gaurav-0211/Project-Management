@@ -44,4 +44,16 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Response> handleIllegalException(IllegalArgumentException ex, HttpServletRequest request) {
+        Response response = Response.buildResponse(
+                "FAILED",
+                ex.getMessage(),
+                null,
+                HttpStatus.NOT_FOUND.value(),
+                "Process executed success"
+        );
+        return new ResponseEntity<>(response, HttpStatusCode.valueOf(HttpStatus.NOT_FOUND.value()));
+    }
+
 }

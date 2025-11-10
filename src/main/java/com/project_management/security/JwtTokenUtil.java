@@ -9,8 +9,8 @@ import java.util.Date;
 @Component
 public class JwtTokenUtil {
 
-    private final String SECRET = "my-super-secret-key-for-project-management-application"; // should be in ENV variable
-    private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+    private final String SECRET = "my-super-secret-key-for-project-management-application";
+    private final long EXPIRATION_TIME = 1000 * 60 * 60;
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());

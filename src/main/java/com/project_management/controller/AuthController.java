@@ -1,5 +1,6 @@
 package com.project_management.controller;
 
+import com.project_management.exception.NoDataExist;
 import com.project_management.model.Response;
 import com.project_management.model.User;
 import com.project_management.repository.UserRepository;
@@ -37,8 +38,8 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(email, password)
             );
 
-            User user = userRepository.findByEmail(email)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid email"));
+            User user = this.userRepository.findByEmail(email)
+                    .orElseThrow(() -> new NoDataExist("Invalid email"));
 
             String token = jwtTokenUtil.generateToken(user.getEmail(), user.getRole().name());
 

@@ -11,6 +11,7 @@ import com.project_management.service.UserService;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
@@ -30,6 +31,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper mapper;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public Response createUser(UserDto dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
@@ -40,7 +44,7 @@ public class UserServiceImpl implements UserService {
         if (dto.getRole() == null) {
             user.setRole(Role.EMPLOYEE);
         }
-
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
         User saved =  userRepository.save(user);
 
         response.setStatus("SUCCESS");
@@ -125,7 +129,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(()-> new NoDataExist("No User exist with given Id"));
         user.setName(dto.getName());
         user.setEmail(dto.getEmail());
-        user.setPassword(dto.getPassword());
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         User saved = this.userRepository.save(user);
 

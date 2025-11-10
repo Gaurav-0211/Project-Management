@@ -23,20 +23,20 @@ public class UserController {
     private OrganizationRepository organizationRepository;
 
     // Create new user
-    @PostMapping
+    @PostMapping("/add-User")
     public ResponseEntity<Response> createUser(@RequestBody UserDto dto) {
         Response response = this.userService.createUser(dto);
         return ResponseEntity.ok(response);
     }
 
     // Get all users
-    @GetMapping
+    @GetMapping("/get-all-users")
     public ResponseEntity<Response> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     // Get user by ID
-    @GetMapping("/{id}")
+    @GetMapping("/getUser/{id}")
     public ResponseEntity<Response> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
@@ -71,7 +71,7 @@ public class UserController {
     }
 
     // Update existing user
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Response> updateUser(@PathVariable Long id, @RequestBody UserDto updatedUser) {
         Response response = this.userService.updateUser(id, updatedUser);
         return ResponseEntity.ok(response);
@@ -84,7 +84,7 @@ public class UserController {
     }
 
     // Delete user
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         return ResponseEntity.ok(this.userService.deleteUser(id));
     }

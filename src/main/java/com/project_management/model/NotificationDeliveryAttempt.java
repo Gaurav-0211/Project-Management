@@ -46,4 +46,6 @@ public class NotificationDeliveryAttempt {
     @Column(nullable=false)
     private int attemptNumber;
 
+    private String status;
+
 }
